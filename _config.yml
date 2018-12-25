@@ -4,7 +4,7 @@ SEOTitle: 余醉的博客 | BY dtminer
 header-img: img/post-bg-desk.jpg
 email: abc837020661@163.com
 description: "Every failure is leading towards success."
-keyword: "BY, BY Blog, 柏荧的博客, qiubaiying, 邱柏荧, iOS, Apple, iPhone"
+keyword: "python,r,技术文章,实用软件"
 url: "http://xiaochenggushiduo.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/xiaochenggushiduo/xiaochenggushiduo.github.io.git" # you code repository
