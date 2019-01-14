@@ -76,7 +76,7 @@ webshot（专门用于动态网页截图）
 	remDr <- remoteDriver(browserName = "phantomjs", extraCapabilities = eCap)
 
 # 构建自动化抓取函数：
-
+```
 #自动化抓取函数：
 
 myresult<-function(remDr,url){
@@ -191,7 +191,7 @@ myresult<-function(remDr,url){
     return(myresult)
 
 }
-
+```
 # 运行抓取函数
 ![预览](https://pic2.zhimg.com/80/v2-82ee0fd56ff0d31765d9a5c334ea7711_hd.jpg)
 
