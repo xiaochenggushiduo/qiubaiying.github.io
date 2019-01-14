@@ -76,75 +76,131 @@ webshot（专门用于动态网页截图）
 	remDr <- remoteDriver(browserName = "phantomjs", extraCapabilities = eCap)
 
 # 构建自动化抓取函数：
+
 #自动化抓取函数：
+
 myresult<-function(remDr,url){
-    ###初始化一个数据框，用作后期收据收集之用！
+
+###初始化一个数据框，用作后期收据收集之用！
+    
     myresult<-data.frame() 
+    
     ###调用后台浏览器（因为是plantomjs这种无头浏览器（headless），所以你看不到弹出窗口）
+    
     remDr$open()
+    
     ###打开导航页面（也就是直达要抓取的目标网址）
+    
     remDr$navigate(url) 
+    
     ###初始化一个计时器（用于输出并查看任务进度）
+    
     i = 0
+    
     while(TRUE){
-        #计时器开始计数：
-        i = i+1
-        #范回当前页面DOM
-        pagecontent<-remDr$getPageSource()[[1]]
-        #以下三个字段共用一部分祖先节点，所以临时建立了一个根节点（节省冗余代码）
-        con_list_item       <- pagecontent %>% read_html() %>% xml_find_all('//ul[@class="item_con_list"]/li')
-        #职位名称
-        position.name       <- con_list_item %>% xml_attr("data-positionname") 
-        #公司名称
-        position.company    <- con_list_item %>% xml_attr("data-company") 
-        #职位薪资
-        position.salary     <- con_list_item %>% xml_attr("data-salary") 
-        #职位详情链接
-        position.link       <- pagecontent %>% read_html() %>% xml_find_all('//div[@class="p_top"]/a') %>% xml_attr("href")
-        #职位经验要求
-        position.exprience  <- pagecontent %>% read_html() %>% xml_find_all('//div[@class="p_bot"]/div[@class="li_b_l"]') %>% xml_text(trim=TRUE) 
-        #职位所述行业
-        position.industry   <- pagecontent %>% read_html() %>% xml_find_all('//div[@class="industry"]') %>% xml_text(trim=TRUE) %>% gsub("[[:space:]\\u00a0]+|\\n", "",.)
-        #职位福利
-        position.bonus      <- pagecontent %>% read_html() %>% xml_find_all('//div[@class="list_item_bot"]/div[@class="li_b_l"]') %>% xml_text(trim=TRUE) %>% gsub("[[:space:]\\u00a0]+|\\n", "/",.)
-        #职位工作环境
-        position.environment<- pagecontent %>% read_html() %>% xml_find_all('//div[@class="li_b_r"]') %>% xml_text(trim=TRUE) 
-        #收集数据
-        mydata<- data.frame(position.name,position.company,position.salary,position.link,position.exprience,position.industry,position.bonus,position.environment,stringsAsFactors = FALSE)
-        #将本次收集的数据写入之前创建的数据框
-        myresult<-rbind(myresult,mydata)
-        #系统休眠0.5~1.5秒
-        Sys.sleep(runif(1,0.5,1.5))
-        #判断页面是否到尾部
-        if ( pagecontent %>% read_html() %>% xml_find_all('//div[@class="page-number"]/span[1]') %>% xml_text() !="30"){
-            #如果页面未到尾部，则点击下一页
-            remDr$findElement('xpath','//div[@class="pager_container"]/a[last()]')$clickElement()
-            #但因当前任务进度
-            cat(sprintf("第【%d】页抓取成功",i),sep = "\n")
-        } else {
-            #如果页面到尾部则跳出while循环
-            break
-        }
+        
+	#计时器开始计数：
+        
+	i = i+1
+        
+	#范回当前页面DOM
+        
+	pagecontent<-remDr$getPageSource()[[1]]
+        
+	#以下三个字段共用一部分祖先节点，所以临时建立了一个根节点（节省冗余代码）
+        
+	con_list_item       <- pagecontent %>% read_html() %>% xml_find_all('//ul[@class="item_con_list"]/li')
+        
+	#职位名称
+        
+	position.name       <- con_list_item %>% xml_attr("data-positionname") 
+        
+	#公司名称
+        
+	position.company    <- con_list_item %>% xml_attr("data-company") 
+        
+	#职位薪资
+        
+	position.salary     <- con_list_item %>% xml_attr("data-salary") 
+        
+	#职位详情链接
+        
+	position.link       <- pagecontent %>% read_html() %>% xml_find_all('//div[@class="p_top"]/a') %>% xml_attr("href")
+        
+	#职位经验要求
+        
+	position.exprience  <- pagecontent %>% read_html() %>% xml_find_all('//div[@class="p_bot"]/div[@class="li_b_l"]') %>% xml_text(trim=TRUE) 
+        
+	#职位所述行业
+        
+	position.industry   <- pagecontent %>% read_html() %>% xml_find_all('//div[@class="industry"]') %>% xml_text(trim=TRUE) %>% gsub("[[:space:]\\u00a0]+|\\n", "",.)
+        
+	#职位福利
+        
+	position.bonus      <- pagecontent %>% read_html() %>% xml_find_all('//div[@class="list_item_bot"]/div[@class="li_b_l"]') %>% xml_text(trim=TRUE) %>% gsub("[[:space:]\\u00a0]+|\\n", "/",.)
+        
+	#职位工作环境
+        
+	position.environment<- pagecontent %>% read_html() %>% xml_find_all('//div[@class="li_b_r"]') %>% xml_text(trim=TRUE) 
+        
+	#收集数据
+        
+	mydata<- data.frame(position.name,position.company,position.salary,position.link,position.exprience,position.industry,position.bonus,position.environment,stringsAsFactors = FALSE)
+        
+	#将本次收集的数据写入之前创建的数据框
+        
+	myresult<-rbind(myresult,mydata)
+        
+	#系统休眠0.5~1.5秒
+        
+	Sys.sleep(runif(1,0.5,1.5))
+        
+	#判断页面是否到尾部
+        
+	if ( pagecontent %>% read_html() %>% xml_find_all('//div[@class="page-number"]/span[1]') %>% xml_text() !="30"){
+           
+	   #如果页面未到尾部，则点击下一页
+           
+	   remDr$findElement('xpath','//div[@class="pager_container"]/a[last()]')$clickElement()
+           
+	   #但因当前任务进度
+           
+	   
+	  cat(sprintf("第【%d】页抓取成功",i),sep = "\n")
+        
+	} else {
+            
+	    #如果页面到尾部则跳出while循环
+            
+	    break
+        
+	}
+    
     }
+    
     #跳出循环后关闭remDr服务窗口
+    
     remDr$close() 
+    
     #但因全局任务状态（也即任务结束）
+    
     cat("all work is done!!!",sep = "\n")
+    
     #返回最终数据
+    
     return(myresult)
+
 }
 
-运行抓取函数
-https://pic2.zhimg.com/80/v2-82ee0fd56ff0d31765d9a5c334ea7711_hd.jpg
+# 运行抓取函数
+![预览](https://pic2.zhimg.com/80/v2-82ee0fd56ff0d31765d9a5c334ea7711_hd.jpg)
 
+	url <- "https://www.lagou.com/zhaopin"
 
-
-url <- "https://www.lagou.com/zhaopin"
-
-myresult <- myresult(remDr,url)
+	myresult <- myresult(remDr,url)
 
 # 预览
 
-DT::datatable(myresult) 
+	DT::datatable(myresult) 
 
-https://pic1.zhimg.com/80/v2-9cfeeed51f127c05b345ee622b6fa838_hd.jpg
+![预览](https://pic1.zhimg.com/80/v2-9cfeeed51f127c05b345ee622b6fa838_hd.jpg)
