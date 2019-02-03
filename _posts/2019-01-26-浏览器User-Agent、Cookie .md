@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      R语言统计抽样  
+title:      浏览器User-Agent、Cookie   
 date:       2019-01-24
 author:     余醉
 header-img: img/post-bg-internet worm.jpg
