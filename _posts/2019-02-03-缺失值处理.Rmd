@@ -1,6 +1,13 @@
 ---
-title: "缺失值处理"
-output: github_document
+layout:     post
+title:      R语言缺失值处理   
+date:       2019-02-03
+author:     余醉
+header-img: img/post-bg-internet worm.jpg
+catalog: true
+tags:
+    - 数据处理
+    - R
 ---
   缺失值是数据中经常出现的问题，在调查中无回答、录入错误都会导致缺失值的发生
 缺失数据会影响分析工作的进行，影响统计工作的效率，还会导致分析的偏差。所以我们要学会缺失值的处理。
