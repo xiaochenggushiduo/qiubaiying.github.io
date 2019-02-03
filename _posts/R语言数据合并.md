@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      浏览器User-Agent、Cookie   
+date:       2019-01-24
+author:     余醉
+header-img: img/post-bg-internet worm.jpg
+catalog: true
+tags:
+    - 数据处理
+    - R
+---
 ## 数据的合并
 
 ### 需要的函数
