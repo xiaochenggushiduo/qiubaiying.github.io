@@ -2,8 +2,8 @@
 layout:     post
 title:      爬虫利器SelectorGadget
 date:       2018-12-30
-author:     余醉
-header-img: img/post-bg-ios9-web.jpg
+author:     Alex Yu
+header-img: img/home-bg.jpg
 catalog: true
 tags:    
     - 实用软件
