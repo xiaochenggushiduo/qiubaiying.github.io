@@ -2,8 +2,8 @@
 layout:     post
 title:      浏览器User-Agent、Cookie   
 date:       2019-01-24
-author:     余醉
-header-img: img/post-bg-internet worm.jpg
+author:     Alex Yu
+header-img: img/home-bg.jpg
 catalog: true
 tags:
     - 技术文章
