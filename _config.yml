@@ -1,6 +1,6 @@
 # Site settings
 title: 余醉
-SEOTitle: R语言教程文章
+SEOTitle: R语言相关文章
 header-img: img/home-bg.jpg
 email: abc837020661@163.com
 description: "Every failure is leading towards success."
@@ -16,11 +16,11 @@ sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's us
 
 # SNS settings
 RSS: true
-weibo_username:     余醉|dtminer.com
+weibo_username:     余醉|dtminer
 #zhihu_username:     qiubaiying
 #github_username:    qiubaiying
 #facebook_username:  baiying.qiu.7
-jianshu_username:   https://www.jianshu.com/u/%E5%A4%A7%E9%81%93%E6%97%A0%E5%BD%A2x%E6%88%91%E6%9C%89%E5%9E%8B
+jianshu_username:   66e7499feb96
 #twitter_username:   qiubaiying
 
 
