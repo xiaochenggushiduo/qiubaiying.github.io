@@ -1,10 +1,10 @@
 # Site settings
-title: 余醉
-SEOTitle: R语言相关文章
+title: 智识分子
+SEOTitle: R语言文章
 header-img: img/home-bg.jpg
 email: abc837020661@163.com
 description: "Every failure is leading towards success."
-keyword: "python,r,技术文章,实用软件"
+keyword: "Python,R,技术文章,实用软件"
 url: "http://xiaochenggushiduo.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/xiaochenggushiduo/xiaochenggushiduo.github.io.git" # you code repository
